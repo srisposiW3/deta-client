@@ -1,0 +1,1 @@
+{"id":"e0871950-033e-428a-96bf-6467c41d998b","space":16710,"runtime":"nodejs14.x","name":"system-ticketing","path":"vdzjg3","project":"b0ibn44p","account":"144798365827","region":"sa-east-1","deps":["express@^4.17.2"],"envs":null,"public":true,"log_level":"debug","cron":""}
