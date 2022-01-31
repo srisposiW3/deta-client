@@ -10,6 +10,10 @@ const app = express();
 
 app.use(express.json())
 
+app.get('/health', async (req, res) => {
+    res.status(200).json({"message": "ok"});
+})
+
 app.post('/issue', async (req, res) => {
     const { projectName, description } = req.body;
     const issue = { projectName, description};
@@ -27,14 +31,18 @@ app.get('/issue/:id', async (req, res) => {
     }
 });
 
-app.get('/search-by-project/:projectName', async (req, res) => {
+app.get('/project', async (req, res) => {
+    let result = await db.fetch();
+    console.log(result.count);
+    res.send("OK");
+})
+
+app.get('/searchProject/:projectName', async (req, res) => {
     const { projectName } = req.params;
-    const result = await db.fetch({"projectName":projectName});
-    if (result.items.length > 0) {
-        return result.items;
-    } else {
-        res.status(404).json({"message": "Project not found"});
-    }
+    console.log(projectName);
+    let { items } = await db.fetch();
+    console.log(items);
+    res.json(items);
 });
 
 //===============Prueba================================
